@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/peidevs/Gonzo.svg?branch=master)](https://travis-ci.org/peidevs/Gonzo)
+
 # Gonzo
 Gonzo is a PEI Developers project which is the new version of the Scooter project. Scooter is a door prize picking application. In the past Scooter has been used by the PEI Developers group as a [Code Kata] (https://en.wikipedia.org/wiki/Kata_(programming)) used to learn new skills.
 
