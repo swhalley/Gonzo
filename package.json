@@ -1,0 +1,19 @@
+{
+  "name": "gonzo",
+  "version": "0.0.1",
+  "description": "Scooter 3.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peidevs/Gonzo.git"
+  },
+  "author": "pei developers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peidevs/Gonzo/issues"
+  },
+  "homepage": "https://github.com/peidevs/Gonzo#readme"
+}
