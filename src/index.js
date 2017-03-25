@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 
 import CardDeck from './components/CardDeck';
 import AddPlayerForm from './components/AddPlayerForm';
+import GameEngine from './components/GameEngine';
 
 import Player from './model/Player';
 
@@ -22,6 +23,7 @@ class Root extends React.Component {
         return (
             <div>
                 <AddPlayerForm addPlayer={this.addPlayer.bind(this)} />
+                <GameEngine players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} />
                 <CardDeck players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} />
             </div>
         )
