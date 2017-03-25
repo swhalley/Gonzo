@@ -3,7 +3,7 @@ import React from 'react';
 class CardDeck extends React.Component {
     renderCard( player ){
         return (
-            <li key={player.id}>{player.name}</li>
+            <li className='card' key={player.id}>{player.name}</li>
         )
     }
 

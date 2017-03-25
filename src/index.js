@@ -2,8 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import uuid from 'uuid/v4';
 
-import CardDeck from './CardDeck';
-import AddPlayerForm from './AddPlayerForm';
+import CardDeck from './components/CardDeck';
+import AddPlayerForm from './components/AddPlayerForm';
+
+import './css/styles.css';
 
 class Root extends React.Component {
     constructor(){

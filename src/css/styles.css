@@ -1,0 +1,14 @@
+
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li.card{
+    width: 150px;
+    height: 150px;
+    border: solid black 1px;
+    border-radius: 5px;
+}
