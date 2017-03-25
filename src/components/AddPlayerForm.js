@@ -1,16 +1,10 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import Player from '../model/Player';
 
 class AddPlayerForm extends React.Component{
     formSubmit( event ){
         event.preventDefault();
-
-        let player = {};
-        player.name = this.playerForm.name.value;
-        player.id = uuid();
-
-        this.props.addPlayer( player );
-
+        this.props.addPlayer( new Player( this.playerForm.name.value ) );
     }
 
     render(){
