@@ -17,9 +17,10 @@ class CardDeck extends React.Component {
     flip( event, playerId ){
         event.preventDefault();
 
+
+
         let player = this.props.players[playerId ];
         player.flipped = !player.flipped;
-
         this.props.updatePlayer( player );
     }
 

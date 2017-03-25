@@ -1,4 +1,7 @@
-
+body {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 24px;
+}
 
 .cardDeck{
     position: relative;
@@ -10,6 +13,7 @@
     position: relative;
     width: 150px;
     height: 150px;
+    margin: 5px;
 }
 
 .cardFront, .cardBack {
@@ -25,7 +29,13 @@
 }
 
 .cardFront {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     text-align: center;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    overflow: hidden;
 
     transform: rotateY(0deg);
 }
