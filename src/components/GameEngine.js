@@ -1,11 +1,13 @@
 import React from 'react';
 
 class GameEngine extends React.Component{
+    playGameHandle
 
     render(){
         return (
             <div>
                 <button onClick={this.runGame.bind(this)}>Play Game</button>
+                <button onClick={this.stopGame.bind(this)}>Stop Game</button>
                 <button onClick={this.resetGame.bind(this)}>Reset Game</button>
             </div>
         )
@@ -23,9 +25,14 @@ class GameEngine extends React.Component{
 
             this.props.updatePlayer( randomPlayer );
 
-            setTimeout( this.runGame.bind(this), 500 );
+            this.playGameHandle = setTimeout( this.runGame.bind(this), 500 );
+            //Also consider adding a slider for game speed.
         }
         return;
+    }
+
+    stopGame(){
+        clearTimeout( this.playGameHandle );
     }
 
     resetGame(){
