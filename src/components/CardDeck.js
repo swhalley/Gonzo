@@ -6,7 +6,10 @@ class CardDeck extends React.Component {
 
         return (
             <div className={`card ${player.flipped ? 'flipped' : ''}`} key={playerId} onClick={(event) => this.flip(event, playerId)}>
-                {player.name}
+                <div className='cardFace cardFront'>
+                    {player.name}
+                </div>
+                <div className='cardFace cardBack'></div>
             </div>
         )
     }
