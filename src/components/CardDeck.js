@@ -5,9 +5,9 @@ class CardDeck extends React.Component {
         const player = this.props.players[ playerId ];
 
         return (
-            <li className={`card ${player.flipped ? 'flipped' : ''}`} key={playerId} onClick={(event) => this.flip(event, playerId)}>
+            <div className={`card ${player.flipped ? 'flipped' : ''}`} key={playerId} onClick={(event) => this.flip(event, playerId)}>
                 {player.name}
-            </li>
+            </div>
         )
     }
 
@@ -23,9 +23,9 @@ class CardDeck extends React.Component {
     render(){
         let playerIds = Object.keys( this.props.players );
         return (
-            <ul>
+            <div className='cardDeck'>
                 {playerIds.map( this.renderCard.bind(this) )}
-            </ul>
+            </div>
         )
     }
 }

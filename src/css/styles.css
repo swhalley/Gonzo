@@ -1,14 +1,28 @@
 
 
-ul {
+.cardDeck {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
 }
 
-li.card{
+.card{
     width: 150px;
     height: 150px;
     border: solid black 1px;
     border-radius: 5px;
+
+    transition: all 3s;
 }
+
+.card.flipped{
+    transform: rotateY(180deg);
+}
+
+
+/*
+Ideas for styles - think about "match games" where there are little squares that flip over.
+Back of the card when you are out is a "pei devs" logo.
+
+Could this design be flexible enough to be a deck of cards later?
+*/
