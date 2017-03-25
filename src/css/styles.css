@@ -25,6 +25,8 @@
 }
 
 .cardFront {
+    text-align: center;
+
     transform: rotateY(0deg);
 }
 
@@ -50,11 +52,3 @@
 .card.flipped .cardBack {
     transform: rotateY(0deg);
 }
-
-
-/*
-Ideas for styles - think about "match games" where there are little squares that flip over.
-Back of the card when you are out is a "pei devs" logo.
-
-Could this design be flexible enough to be a deck of cards later?
-*/
