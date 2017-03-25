@@ -1,7 +1,16 @@
 import React from 'react';
 
 class GameEngine extends React.Component{
-    playGameHandle
+
+    constructor(){
+        super();
+
+        this.playGameHandle = null;
+
+        this.state = {
+            gameSpeed : 500
+        }
+    }
 
     render(){
         return (
@@ -9,6 +18,10 @@ class GameEngine extends React.Component{
                 <button onClick={this.runGame.bind(this)}>Play Game</button>
                 <button onClick={this.stopGame.bind(this)}>Stop Game</button>
                 <button onClick={this.resetGame.bind(this)}>Reset Game</button>
+                <label>Game Speed</label>
+                <input type="range" value={this.state.gameSpeed} min="0" max="2000" step="100"
+                       onChange={ this.updateGameSpeed.bind(this)} />
+                <span>{this.state.gameSpeed}ms</span>
             </div>
         )
     }
@@ -25,10 +38,8 @@ class GameEngine extends React.Component{
 
             this.props.updatePlayer( randomPlayer );
 
-            this.playGameHandle = setTimeout( this.runGame.bind(this), 500 );
-            //Also consider adding a slider for game speed.
+            this.playGameHandle = setTimeout( this.runGame.bind(this), this.state.gameSpeed );
         }
-        return;
     }
 
     stopGame(){
@@ -39,6 +50,12 @@ class GameEngine extends React.Component{
         Object.keys( this.props.players ).forEach( (id) => {
             this.props.players[id].flipped = false;
             this.props.updatePlayer( this.props.players[id] );
+        });
+    }
+
+    updateGameSpeed( event ){
+        this.setState( {
+            gameSpeed : window.parseInt(event.target.value)
         });
     }
 }
