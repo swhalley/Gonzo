@@ -16,7 +16,7 @@ class CardDeck extends React.Component {
 
         return (
             <div key={playerId}
-                 className={`card ${player.flipped ? 'flipped' : ''} ${playerId === this.props.winner ? 'winner' : ''}`}
+                 className={`card ${player.flipped ? 'flipped' : ''} ${player.winner ? 'winner' : ''}`}
                  onClick={(event) => this.flip(event, playerId)}>
                 <div className='cardFace cardFront'>
                     {player.name}
@@ -28,8 +28,13 @@ class CardDeck extends React.Component {
 
     flip( event, playerId ){
         event.preventDefault();
+        let player = this.props.players[playerId];
 
-        let player = this.props.players[playerId ];
+        //Any player but this one is the winner
+        if( !player.winner && Object.keys(this.props.players).some((id) => this.props.players[id].winner) ){
+            return;
+        }
+
         player.flipped = !player.flipped;
         this.props.updatePlayer( player );
     }

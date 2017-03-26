@@ -14,8 +14,7 @@ class Root extends React.Component {
         super();
 
         this.state = {
-            players : {},
-            winner : ""
+            players : {}
         };
     }
 
@@ -23,8 +22,8 @@ class Root extends React.Component {
         return (
             <div>
                 <AddPlayerForm addPlayer={this.addPlayer.bind(this)} />
-                <GameEngine players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} declareWinner={this.declareWinner.bind(this)} />
-                <CardDeck players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} winner={this.state.winner} />
+                <GameEngine players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} />
+                <CardDeck players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} />
             </div>
         )
     }
@@ -37,12 +36,12 @@ class Root extends React.Component {
             "Anibal Gholson", "Valeria Villalon", "Ozella Wymer", "Lyndsey Rounds", "Gussie Bustamante",
             "Niki Hetzler", "Marlyn Rey", "Lupe Burke", "Jacinto Casarez", "Cordell Courville",
             "Angelena Sickels", "Talia Harty", "Bret Califano", "David Davies", "Lan Barre",
-            "Refugio Hopp", "Marquetta Witherington", "Carlita Stecklein", "Will Armentrout", "Birgit Kerner",
-            "Elmira Lemke", "Tasha Stefaniak", "Golda Roeder", "Federico Shuck", "Rodger Culbertson",
-            "Victorina Brochu", "Arie Laboy", "Peggy Morvant", "Sharyl Nott", "Josephine Deno",
-            "Elenor Buel", "Julee Veiga", "Edgardo Disney", "Agueda Bregman", "Carmella Moriarity",
-            "Erline Karr", "Janean Harbour", "Altagracia Kushner", "Hazel Masker", "Hobert Cid",
-            "Tegan Sidhu", "Izetta Jacome", "Camie Repp", "Virgie Ely", "Frieda Dionne"
+            //"Refugio Hopp", "Marquetta Witherington", "Carlita Stecklein", "Will Armentrout", "Birgit Kerner",
+            //"Elmira Lemke", "Tasha Stefaniak", "Golda Roeder", "Federico Shuck", "Rodger Culbertson",
+            //"Victorina Brochu", "Arie Laboy", "Peggy Morvant", "Sharyl Nott", "Josephine Deno",
+            //"Elenor Buel", "Julee Veiga", "Edgardo Disney", "Agueda Bregman", "Carmella Moriarity",
+            //"Erline Karr", "Janean Harbour", "Altagracia Kushner", "Hazel Masker", "Hobert Cid",
+            //"Tegan Sidhu", "Izetta Jacome", "Camie Repp", "Virgie Ely", "Frieda Dionne"
         ];
 
         people.forEach( (person) => {
@@ -66,12 +65,6 @@ class Root extends React.Component {
 
         this.setState( {players});
     }
-
-    declareWinner( playerId ){
-        let winner = playerId || "";
-        this.setState( {winner} );
-    }
-
 }
 
 render( <Root />, document.querySelector( '#app' ));

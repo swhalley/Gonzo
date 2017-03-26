@@ -23,7 +23,7 @@ class GameEngine extends React.Component{
                        onChange={ this.updateGameSpeed.bind(this)} />
                 <span>{this.state.gameSpeed}ms </span>
                 <span>
-                    { Object.keys( this.props.players ).filter((id) => !this.props.players[id].flipped).length}
+                    { Object.keys( this.props.players ).filter(this.isPlayerStillInGame.bind(this)).length}
                     of
                     {Object.keys( this.props.players ).length}
                     Players
@@ -42,7 +42,7 @@ class GameEngine extends React.Component{
 
         let gameRunner = () => {
             const players = this.props.players;
-            const remainingPlayerIds = Object.keys(players).filter((id) => !players[id].flipped);
+            const remainingPlayerIds = Object.keys(players).filter(this.isPlayerStillInGame.bind(this));
 
             if (remainingPlayerIds.length > 1) {
                 const randomPlayerId = remainingPlayerIds[Math.floor(Math.random() * remainingPlayerIds.length)];
@@ -55,14 +55,15 @@ class GameEngine extends React.Component{
                 this.playGameHandle = setTimeout(gameRunner, this.state.gameSpeed);
             } else {
                 this._running = false;
-                this.props.declareWinner( remainingPlayerIds[0] );
+
+                let player = players[remainingPlayerIds[0]];
+                player.winner = true;
+                this.props.updatePlayer(player);
             }
         };
 
         gameRunner();
     }
-
-
 
     stopGame(){
         clearTimeout( this.playGameHandle );
@@ -71,10 +72,9 @@ class GameEngine extends React.Component{
 
     resetGame(){
         this.stopGame();
-        this.props.declareWinner( null );
 
         Object.keys( this.props.players ).forEach( (id) => {
-            this.props.players[id].flipped = false;
+            this.props.players[id].reset();
             this.props.updatePlayer( this.props.players[id] );
         });
     }
@@ -83,6 +83,12 @@ class GameEngine extends React.Component{
         this.setState( {
             gameSpeed : window.parseInt(event.target.value)
         });
+    }
+
+    isPlayerStillInGame( id ){
+        let player = this.props.players[id];
+
+        return !player.flipped || player.winner;
     }
 }
 

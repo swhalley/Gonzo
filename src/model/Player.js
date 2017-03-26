@@ -5,6 +5,14 @@ class Player {
         this.name = name;
         this.id = id || uuid();
         this.flipped = false;
+        this.winner = false;
+
+        this.reset = this.reset.bind(this);
+    }
+
+    reset(){
+        this.flipped = false;
+        this.winner = false;
     }
 }
 
