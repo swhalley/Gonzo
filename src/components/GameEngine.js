@@ -27,26 +27,44 @@ class GameEngine extends React.Component{
     }
 
     runGame(){
-        const players = this.props.players;
-        const remainingPlayerIds = Object.keys(players).filter( (id) => !players[id].flipped);
-
-        if( remainingPlayerIds.length > 1 ){
-            const randomPlayerId = remainingPlayerIds[Math.floor(Math.random()*remainingPlayerIds.length)];
-
-            let randomPlayer = players[randomPlayerId];
-            randomPlayer.flipped = true;
-
-            this.props.updatePlayer( randomPlayer );
-
-            this.playGameHandle = setTimeout( this.runGame.bind(this), this.state.gameSpeed );
+        if(this._running){
+            console.log( 'Game already running');
+            return;
         }
+
+        this._running = true;
+
+        let gameRunner = () => {
+            const players = this.props.players;
+            const remainingPlayerIds = Object.keys(players).filter((id) => !players[id].flipped);
+
+            if (remainingPlayerIds.length > 1) {
+                const randomPlayerId = remainingPlayerIds[Math.floor(Math.random() * remainingPlayerIds.length)];
+
+                let randomPlayer = players[randomPlayerId];
+                randomPlayer.flipped = true;
+
+                this.props.updatePlayer(randomPlayer);
+
+                this.playGameHandle = setTimeout(gameRunner, this.state.gameSpeed);
+            } else {
+                this._running = false;
+            }
+        };
+
+        gameRunner();
     }
+
+
 
     stopGame(){
         clearTimeout( this.playGameHandle );
+        this._running = false;
     }
 
     resetGame(){
+        this.stopGame();
+
         Object.keys( this.props.players ).forEach( (id) => {
             this.props.players[id].flipped = false;
             this.props.updatePlayer( this.props.players[id] );
