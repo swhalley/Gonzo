@@ -13,7 +13,6 @@
     width: 150px;
     height: 150px;
     margin: 5px;
-    will-change: transform;
 }
 
 .cardFront, .cardBack {
