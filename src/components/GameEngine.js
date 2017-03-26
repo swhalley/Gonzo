@@ -22,6 +22,12 @@ class GameEngine extends React.Component{
                 <input type="range" value={this.state.gameSpeed} min="0" max="2000" step="100"
                        onChange={ this.updateGameSpeed.bind(this)} />
                 <span>{this.state.gameSpeed}ms</span>
+                <span>
+                    { Object.keys( this.props.players ).filter((id) => !this.props.players[id].flipped).length}
+                    of
+                    {Object.keys( this.props.players ).length}
+                    Players
+                </span>
             </div>
         )
     }
