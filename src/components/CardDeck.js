@@ -11,21 +11,6 @@ class CardDeck extends React.Component {
         )
     }
 
-    /**
-     * Animating winner
-     * 1) Potentially using this function to add winner animation.
-     * 2) Also looking at CSS Transation Group - But I think that is only for adding/removing from the dom. not on update
-     * 3) use style on the div which should be style={getStyle(key)} with a check on the winner id
-     */
-    componentDidUpdate(){
-
-        if( this.props.winner ){
-            //use react-animation to show winner?
-        }else {
-            //how would I make sure nothing has the winner animation
-        }
-    }
-
     renderCard( playerId ){
         const player = this.props.players[ playerId ];
 
