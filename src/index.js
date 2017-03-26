@@ -14,8 +14,8 @@ class Root extends React.Component {
         super();
 
         this.state = {
-            players : {}
-
+            players : {},
+            winner : ""
         };
     }
 
@@ -23,8 +23,8 @@ class Root extends React.Component {
         return (
             <div>
                 <AddPlayerForm addPlayer={this.addPlayer.bind(this)} />
-                <GameEngine players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} />
-                <CardDeck players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} />
+                <GameEngine players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} declareWinner={this.declareWinner.bind(this)} />
+                <CardDeck players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} winner={this.state.winner} />
             </div>
         )
     }
@@ -65,6 +65,11 @@ class Root extends React.Component {
         players[ player.id ] = player;
 
         this.setState( {players});
+    }
+
+    declareWinner( playerId ){
+        let winner = playerId || "";
+        this.setState( {winner} );
     }
 
 }

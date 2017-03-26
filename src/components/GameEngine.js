@@ -21,7 +21,7 @@ class GameEngine extends React.Component{
                 <label>Game Speed</label>
                 <input type="range" value={this.state.gameSpeed} min="0" max="2000" step="100"
                        onChange={ this.updateGameSpeed.bind(this)} />
-                <span>{this.state.gameSpeed}ms</span>
+                <span>{this.state.gameSpeed}ms </span>
                 <span>
                     { Object.keys( this.props.players ).filter((id) => !this.props.players[id].flipped).length}
                     of
@@ -55,6 +55,7 @@ class GameEngine extends React.Component{
                 this.playGameHandle = setTimeout(gameRunner, this.state.gameSpeed);
             } else {
                 this._running = false;
+                this.props.declareWinner( remainingPlayerIds[0] );
             }
         };
 
@@ -70,6 +71,7 @@ class GameEngine extends React.Component{
 
     resetGame(){
         this.stopGame();
+        this.props.declareWinner( null );
 
         Object.keys( this.props.players ).forEach( (id) => {
             this.props.players[id].flipped = false;
