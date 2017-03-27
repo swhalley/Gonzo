@@ -10,20 +10,27 @@ class GameEngine extends React.Component{
         this.state = {
             gameSpeed : 500
         }
+
+        this.runGame = this.runGame.bind(this);
+        this.stopGame= this.stopGame.bind(this);
+        this.resetGame = this.resetGame.bind(this);
+        this.gameRunner = this.gameRunner.bind(this);
+        this.isPlayerStillInGame = this.isPlayerStillInGame.bind(this);
+        this.updateGameSpeed = this.updateGameSpeed.bind(this);
     }
 
     render(){
         return (
             <div>
-                <button onClick={this.runGame.bind(this)}>Play Game</button>
-                <button onClick={this.stopGame.bind(this)}>Stop Game</button>
-                <button onClick={this.resetGame.bind(this)}>Reset Game</button>
+                <button onClick={this.runGame}>Play Game</button>
+                <button onClick={this.stopGame}>Stop Game</button>
+                <button onClick={this.resetGame}>Reset Game</button>
                 <label>Game Speed</label>
                 <input type="range" value={this.state.gameSpeed} min="0" max="2000" step="100"
-                       onChange={ this.updateGameSpeed.bind(this)} />
+                       onChange={ this.updateGameSpeed} />
                 <span>{this.state.gameSpeed}ms </span>
                 <span>
-                    { Object.keys( this.props.players ).filter(this.isPlayerStillInGame.bind(this)).length}
+                    { Object.keys( this.props.players ).filter(this.isPlayerStillInGame).length}
                     of
                     {Object.keys( this.props.players ).length}
                     Players
@@ -40,29 +47,29 @@ class GameEngine extends React.Component{
 
         this._running = true;
 
-        let gameRunner = () => {
-            const players = this.props.players;
-            const remainingPlayerIds = Object.keys(players).filter(this.isPlayerStillInGame.bind(this));
+        this.gameRunner();
+    }
 
-            if (remainingPlayerIds.length > 1) {
-                const randomPlayerId = remainingPlayerIds[Math.floor(Math.random() * remainingPlayerIds.length)];
+    gameRunner(){
+        const players = this.props.players;
+        const remainingPlayerIds = Object.keys(players).filter(this.isPlayerStillInGame);
 
-                let randomPlayer = players[randomPlayerId];
-                randomPlayer.flipped = true;
+        if (remainingPlayerIds.length > 1) {
+            const randomPlayerId = remainingPlayerIds[Math.floor(Math.random() * remainingPlayerIds.length)];
 
-                this.props.updatePlayer(randomPlayer);
+            let randomPlayer = players[randomPlayerId];
+            randomPlayer.flipped = true;
 
-                this.playGameHandle = setTimeout(gameRunner, this.state.gameSpeed);
-            } else {
-                this._running = false;
+            this.props.updatePlayer(randomPlayer);
 
-                let player = players[remainingPlayerIds[0]];
-                player.winner = true;
-                this.props.updatePlayer(player);
-            }
-        };
+            this.playGameHandle = setTimeout(this.gameRunner, this.state.gameSpeed);
+        } else {
+            this._running = false;
 
-        gameRunner();
+            let player = players[remainingPlayerIds[0]];
+            player.winner = true;
+            this.props.updatePlayer(player);
+        }
     }
 
     stopGame(){
