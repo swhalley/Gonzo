@@ -1,30 +1,22 @@
 import React from 'react';
+import Card from './Card';
 
 class CardDeck extends React.Component {
+
+    constructor(){
+        super();
+        this.flip = this.flip.bind(this);
+    }
 
     render(){
         let playerIds = Object.keys( this.props.players );
         return (
             <div className='cardDeck'>
-                {playerIds.map( this.renderCard.bind(this) )}
+                { playerIds.map( (id ) => <Card player={this.props.players[id]} flip={this.flip} />)}
             </div>
         )
     }
 
-    renderCard( playerId ){
-        const player = this.props.players[ playerId ];
-
-        return (
-            <div key={playerId}
-                 className={`card ${player.flipped ? 'flipped' : ''} ${player.winner ? 'winner' : ''}`}
-                 onClick={(event) => this.flip(event, playerId)}>
-                <div className='cardFace cardFront'>
-                    {player.name}
-                </div>
-                <div className='cardFace cardBack'></div>
-            </div>
-        )
-    }
 
     flip( event, playerId ){
         event.preventDefault();
