@@ -6,7 +6,8 @@ class Card extends React.Component {
         const player = this.props.player;
 
         return (
-            <div className={`card ${player.flipped ? 'flipped' : ''} ${player.winner ? 'winner' : ''}`}
+            <div
+                 className={`card ${player.flipped ? 'flipped' : ''} ${player.winner ? 'winner' : ''}`}
                  onClick={(event) => this.props.flip(event, player)}>
                 <div className='cardFace cardFront'>
                     {player.name}
