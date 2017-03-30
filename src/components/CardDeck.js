@@ -9,21 +9,20 @@ class CardDeck extends React.Component {
     }
 
     render(){
-        let playerIds = Object.keys( this.props.players );
+
         return (
             <div className='cardDeck'>
-                { playerIds.map( (id ) => <Card player={this.props.players[id]} flip={this.flip} />)}
+                { this.props.players.map( (player) => <Card player={player} key={player.id} flip={this.flip} />)}
             </div>
         )
     }
 
 
-    flip( event, playerId ){
+    flip( event, player ){
         event.preventDefault();
-        let player = this.props.players[playerId];
 
         //Any player but this one is the winner
-        if( !player.winner && Object.keys(this.props.players).some((id) => this.props.players[id].winner) ){
+        if( !player.winner && this.props.players.some((player) => player.winner) ){
             return;
         }
 
@@ -31,5 +30,10 @@ class CardDeck extends React.Component {
         this.props.updatePlayer( player );
     }
 }
+
+CardDeck.propTypes = {
+    players : React.PropTypes.array.isRequired,
+    updatePlayer : React.PropTypes.func.isRequired
+};
 
 export default CardDeck;

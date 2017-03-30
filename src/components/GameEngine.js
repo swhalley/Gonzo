@@ -9,13 +9,12 @@ class GameEngine extends React.Component{
 
         this.state = {
             gameSpeed : 500
-        }
+        };
 
         this.runGame = this.runGame.bind(this);
         this.stopGame= this.stopGame.bind(this);
         this.resetGame = this.resetGame.bind(this);
         this.gameRunner = this.gameRunner.bind(this);
-        this.isPlayerStillInGame = this.isPlayerStillInGame.bind(this);
         this.updateGameSpeed = this.updateGameSpeed.bind(this);
     }
 
@@ -30,9 +29,9 @@ class GameEngine extends React.Component{
                        onChange={ this.updateGameSpeed} />
                 <span>{this.state.gameSpeed}ms </span>
                 <span>
-                    { Object.keys( this.props.players ).filter(this.isPlayerStillInGame).length}
+                    {this.props.players.filter((player)=> !player.flipped || player.winner).length}
                     of
-                    {Object.keys( this.props.players ).length}
+                    {this.props.players.length}
                     Players
                 </span>
             </div>
@@ -52,12 +51,10 @@ class GameEngine extends React.Component{
 
     gameRunner(){
         const players = this.props.players;
-        const remainingPlayerIds = Object.keys(players).filter(this.isPlayerStillInGame);
+        const remainingPlayers = players.filter((player)=> !player.flipped || player.winner);
 
-        if (remainingPlayerIds.length > 1) {
-            const randomPlayerId = remainingPlayerIds[Math.floor(Math.random() * remainingPlayerIds.length)];
-
-            let randomPlayer = players[randomPlayerId];
+        if (remainingPlayers.length > 1) {
+            const randomPlayer = remainingPlayers[Math.floor(Math.random() * remainingPlayers.length)];
             randomPlayer.flipped = true;
 
             this.props.updatePlayer(randomPlayer);
@@ -66,9 +63,8 @@ class GameEngine extends React.Component{
         } else {
             this._running = false;
 
-            let player = players[remainingPlayerIds[0]];
-            player.winner = true;
-            this.props.updatePlayer(player);
+            remainingPlayers[0].winner = true;
+            this.props.updatePlayer(remainingPlayers[0]);
         }
     }
 
@@ -80,9 +76,9 @@ class GameEngine extends React.Component{
     resetGame(){
         this.stopGame();
 
-        Object.keys( this.props.players ).forEach( (id) => {
-            this.props.players[id].reset();
-            this.props.updatePlayer( this.props.players[id] );
+        this.props.players.forEach( (player) => {
+            player.reset();
+            this.props.updatePlayer( player );
         });
     }
 
@@ -91,12 +87,11 @@ class GameEngine extends React.Component{
             gameSpeed : window.parseInt(event.target.value)
         });
     }
-
-    isPlayerStillInGame( id ){
-        let player = this.props.players[id];
-
-        return !player.flipped || player.winner;
-    }
 }
+
+GameEngine.propTypes = {
+    players : React.PropTypes.array.isRequired,
+    updatePlayer : React.PropTypes.func.isRequired
+};
 
 export default GameEngine;

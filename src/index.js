@@ -19,11 +19,13 @@ class Root extends React.Component {
     }
 
     render() {
+        let players = Object.keys( this.state.players ).map( (id ) => this.state.players[id]);
+
         return (
             <div>
                 <AddPlayerForm addPlayer={this.addPlayer.bind(this)} />
-                <GameEngine players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} />
-                <CardDeck players={this.state.players} updatePlayer={this.updatePlayer.bind(this)} />
+                <GameEngine players={players} updatePlayer={this.updatePlayer.bind(this)} />
+                <CardDeck players={players} updatePlayer={this.updatePlayer.bind(this)} />
             </div>
         )
     }
