@@ -6,7 +6,6 @@
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
-    "_test": "mocha --compilers js:babel-core/register test/*.spec.js",
     "test": "jest test/*.spec.js"
   },
   "dependencies": {
