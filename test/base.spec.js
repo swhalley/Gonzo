@@ -1,7 +1,4 @@
-import assert from 'assert';
 
-describe( 'A Test', ()=> {
-    it( 'should pass', ()=>{
-        assert.equal( true, true );
-    });
+test( 'A Test', ()=> {
+    expect( true ).toBe( true );
 });
