@@ -1,11 +1,15 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "build",
     "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "ignore": [
+      "asset-manifest.json",
+      "**/*.map"
     ]
   }
 }
