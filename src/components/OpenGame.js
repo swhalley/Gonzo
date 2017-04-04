@@ -6,16 +6,14 @@ export default class OpenGame extends React.Component {
     constructor(){
         super();
         this.openGame = this.openGame.bind(this);
-
-        this.state = {
-            user : null
-        }
+        this.logout = this.logout.bind(this);
     }
 
     render(){
         return (
           <div>
             <button onClick={this.openGame}>Open Game</button>
+            <button onClick={this.logout}>Logout</button>
           </div>
         )
     }
@@ -30,4 +28,9 @@ export default class OpenGame extends React.Component {
             }
         });
     }
+
+    logout() {
+        base.unauth();
+    }
+
 }
