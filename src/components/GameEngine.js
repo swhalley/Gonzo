@@ -1,4 +1,5 @@
 import React from 'react';
+import OpenGame from './OpenGame';
 
 class GameEngine extends React.Component{
 
@@ -34,6 +35,7 @@ class GameEngine extends React.Component{
                     {this.props.players.length}
                     Players
                 </span>
+                <OpenGame />
             </div>
         )
     }
