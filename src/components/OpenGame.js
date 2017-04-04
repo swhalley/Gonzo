@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import base from '../util/RebaseStore';
 
 export default class OpenGame extends React.Component {
 
@@ -22,6 +23,11 @@ export default class OpenGame extends React.Component {
     
 
     openGame(){
-        console.log( 'game is open');
+        base.authWithOAuthPopup('github', (err, payload) =>{
+            if(err){
+                console.log( 'SSO failed', err);
+                return;
+            }
+        });
     }
 }
