@@ -7,12 +7,13 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "jest test/*.spec.js",
-    "build" : "react-scripts build"
+    "build": "react-scripts build"
   },
   "dependencies": {
     "re-base": "^2.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-router": "^4.0.0",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
