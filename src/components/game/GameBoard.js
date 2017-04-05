@@ -4,7 +4,7 @@ import CardDeck from './CardDeck';
 import AddPlayerForm from './AddPlayerForm';
 import GameEngine from './GameEngine';
 
-import Player from '../model/Player';
+import Player from '../../model/Player';
 
 export default class GameBoard extends React.Component {
     constructor(){

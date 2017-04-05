@@ -1,5 +1,5 @@
 import React from 'react';
-import base from '../util/RebaseStore';
+import base from '../../util/RebaseStore';
 
 export default class OpenGame extends React.Component {
 

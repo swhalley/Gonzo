@@ -1,5 +1,5 @@
 import React from 'react';
-import Player from '../model/Player';
+import Player from '../../model/Player';
 
 class AddPlayerForm extends React.Component{
     formSubmit( event ){

@@ -13,6 +13,8 @@
     "re-base": "^2.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-native": "^0.43.1",
+    "react-native-web": "0.0.81",
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
     "uuid": "^3.0.1"
