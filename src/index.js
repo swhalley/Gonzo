@@ -6,17 +6,21 @@ import GameBoard from './components/GameBoard';
 import JoinGame from './components/JoinGame';
 import HomePage from './components/HomePage';
 
+console.log(GameBoard);
+console.log(JoinGame);
+console.log(HomePage);
+console.log(React);
+
+
 import './css/styles.css';
 
-export default class extends React.Component {
+export default class Application extends React.Component {
     render(){
         return (
             <BrowserRouter>
-                <div>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/join" component={JoinGame} />
-                    <Route exact path="/game/:id" component={GameBoard} />
-                </div>
+                <Route exact path="/" component={HomePage} />
+                <Route path="/join" component={JoinGame} />
+                <Route path="/game/:id" component={GameBoard} />
             </BrowserRouter>
         )
     }
