@@ -13,10 +13,6 @@ import Header from './components/management/Header';
 import './css/styles.css';
 
 export default class Application extends React.Component {
-
-/**
- * https://github.com/reactjs/react-router-tutorial/tree/master/lessons/04-nested-routes
- */
     render(){
         return (
             <BrowserRouter>
@@ -31,13 +27,6 @@ export default class Application extends React.Component {
             </BrowserRouter>
         )
     }
-    //Moving this to Header
-    // componentWillMount(){
-    //     base.onAuth( user => {
-    //         let loggedInUser = { uid : user.uid, name : user.displayName };
-    //         this.setState( {'userAccount' : loggedInUser } );
-    //     });
-    // }
 }
 
 render( <Application />, document.querySelector( '#app' ));
