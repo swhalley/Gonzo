@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Card extends React.Component {
 
@@ -19,8 +20,8 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-    player : React.PropTypes.object.isRequired,
-    flip : React.PropTypes.func.isRequired
+    player : PropTypes.object.isRequired,
+    flip : PropTypes.func.isRequired
 };
 
 export default Card;

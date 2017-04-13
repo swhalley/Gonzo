@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from './Card';
 
 class CardDeck extends React.Component {
@@ -32,8 +33,8 @@ class CardDeck extends React.Component {
 }
 
 CardDeck.propTypes = {
-    players : React.PropTypes.array.isRequired,
-    updatePlayer : React.PropTypes.func.isRequired
+    players : PropTypes.array.isRequired,
+    updatePlayer : PropTypes.func.isRequired
 };
 
 export default CardDeck;

@@ -1,5 +1,5 @@
 import React from 'react';
-import OpenGame from './OpenGame';
+import PropTypes from 'prop-types';
 
 class GameEngine extends React.Component{
 
@@ -35,7 +35,6 @@ class GameEngine extends React.Component{
                     {this.props.players.length}
                     Players
                 </span>
-                <OpenGame />
             </div>
         )
     }
@@ -92,8 +91,8 @@ class GameEngine extends React.Component{
 }
 
 GameEngine.propTypes = {
-    players : React.PropTypes.array.isRequired,
-    updatePlayer : React.PropTypes.func.isRequired
+    players : PropTypes.array.isRequired,
+    updatePlayer : PropTypes.func.isRequired
 };
 
 export default GameEngine;
